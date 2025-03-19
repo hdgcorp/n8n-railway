@@ -1,5 +1,5 @@
 FROM node:22-alpine
-
+ENV NODE_ENV=production
 ARG N8N_VERSION=latest
 ARG PGPASSWORD
 ARG PGHOST
