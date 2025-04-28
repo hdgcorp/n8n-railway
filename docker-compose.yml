@@ -18,6 +18,7 @@ services:
       - "5555:5555"
     depends_on:
       - postgres
+      - qdrant   # <- thêm qdrant
 
   postgres:
     image: postgres:12
@@ -30,5 +31,16 @@ services:
     ports:
       - "5432:5432"
 
+  qdrant:
+    image: qdrant/qdrant:v1.7.3
+    environment:
+      - QDRANT__SERVICE__ENABLE_API_KEY=true
+      - QDRANT_API_KEY=your-secret-api-key
+    ports:
+      - "6333:6333"
+    volumes:
+      - qdrant_data:/qdrant/storage
+
 volumes:
   postgres_data:
+  qdrant_data:
